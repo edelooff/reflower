@@ -36,31 +36,30 @@ def openFile():
 
     if filename != None:
 
-        executed = './k2pdfopt "' + filename + '" -o %s-out.pdf -ui-'
+        executed = ['./k2pdfopt', filename, '-o', '%s-out.pdf', '-ui-']
 
         if straighten.get() == 1:
-            executed += ' -as'
+            executed.append('-as')
 
         if dx.get() == 1:
-            executed += '  -w 784 -h 1135'
+            executed.extend(['-w', '784', '-h', '1135'])
 
         if native.get() == 1:
-            executed += ' -n'
+            executed.append('-n')
 
         if ocr.get() == 1:
-            executed += ' -ocr'
+            executed.append('-ocr')
 
         if orientation.get() == 'landscape':
-            executed += ' -ls'
+            executed.append('-ls')
 
         if columns.get() > 1:
-            executed += ' -col ' + str(columns.get())
+            executed.extend(['-col', str(columns.get())])
 
         if margins.get() == 'big':
-            executed += ' -om 0.3'
+            executed.extend(['-om', '0.3'])
 
         # spawn k2pdfopt
-
         p = sub.Popen(executed, shell=True, stdin=sub.PIPE,
                       stdout=sub.PIPE, bufsize=-1)
 
