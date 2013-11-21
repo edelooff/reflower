@@ -36,7 +36,7 @@ def openFile():
 
     if filename != None:
 
-        executed = './k2pdfopt ' + filename + ' -o %s-out.pdf -ui-'
+        executed = './k2pdfopt "' + filename + '" -o %s-out.pdf -ui-'
 
         if straighten.get() == 1:
             executed += ' -as'
